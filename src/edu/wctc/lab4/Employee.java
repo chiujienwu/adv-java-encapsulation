@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
  * simple you should think about adding two more classes. Think about how employees
  * are hired, who does the hiring and who do those people work for. Think about the
  * Nouns used in business with respect to hiring employees and commanding them to go
- * through orientation.
+ * through orientation.  -- HR hires, works for Company
  *
  * 2. When adding these classes think about the Single Responsibility Principle
  * and Class Encapsulation -- hiding classes inside other classes, similar to
@@ -94,6 +94,7 @@ public class Employee {
 
     // The following methods may be public or private, depending on whether
     // they need to be called from other classes independently.
+
     //
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired. If that were true, this
@@ -130,7 +131,8 @@ public class Employee {
     // sometimes change office locations that this method may need to be called
     // independently from other classes.
     public void moveIntoCubicle(String cubeId) {
-        this.cubeId = cubeId;
+        setCubeId(cubeId);
+//        this.cubeId = cubeId;
         this.movedIn = true;
         reportService.addData(firstName + " " + lastName + " moved into cubicle "
                 + cubeId + " on " + getFormattedDate() + NEWLINE);
@@ -231,5 +233,10 @@ public class Employee {
 
     public void printReport() {
         reportService.outputReport();
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" + "firstName=" + firstName + ", lastName=" + lastName + ", ssn=" + ssn + '}';
     }
 }
